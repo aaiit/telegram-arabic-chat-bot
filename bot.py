@@ -24,6 +24,9 @@ def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
 
+    # bot.send_photo(chat_id=chat_id, )
+    update.message.reply_photo(photo='https://telegram.org/img/t_logo.png') # replay to bot
+
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)

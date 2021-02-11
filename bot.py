@@ -1,3 +1,4 @@
+import sympy as sp
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
@@ -21,12 +22,23 @@ def help(update, context):
     update.message.reply_text('Help!')
 
 def echo(update, context):
-    """Echo the user message."""
-    update.message.reply_text(update.message.text)
+    text = update.message.text
+    #update.message.reply_text(update.message.text)
+    #update.message.reply_photo(photo='https://telegram.org/img/t_logo.png') # replay to bot
 
-    # bot.send_photo(chat_id=chat_id, )
-    update.message.reply_photo(photo='https://telegram.org/img/t_logo.png') # replay to bot
+    x, y, z = sympy.symbols('xyz')
+    p = sympy.Plot(x * y ** 3 - y * x ** 3)
+    p.saveimage('tmp.png', format='png')
+    update.message.reply_photo(open("tmp.ong",'rb')) # replay to bot
 
+    ### factorization and expansion
+
+    # expr = sp.factor(x**2 - y**2)
+
+    # print(expr)
+
+    # expr = sp.expand(expr)
+    
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)

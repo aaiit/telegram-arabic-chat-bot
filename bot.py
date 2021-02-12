@@ -1,5 +1,13 @@
-import sympy as sp
-import sympy 
+# import os
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import scoped_session, sessionmaker
+# #os.getenv("DATABASE_URL")
+# engine = "postgres://ennjrjkrfsb____all_code_of_key_.....___compute.amazonaws.com:5432/ddo7541ka3hio7"
+# db = scoped_session(sessionmaker(bind=engine))
+# db.execute("INSERT INTO books VALUES (1, 1, 1, 1)")
+# db.commit()
+
+
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
@@ -10,7 +18,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-TOKEN = '1617208959:AAFJU_-L_2FK29EjC3XXtIk5CYQ1eAAvXiw'
+TOKEN = '1679902226:AAG1jLPLeCa9Pfb_5-9VvYt0lBrJUh0moQQ'
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
@@ -22,11 +30,16 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
 
+
+def info(update,context):
+    user = update.message.from_user
+    update.message.reply_text('You are the user {} and your user ID: {} '.format(user['username'], user['id']))
+
 def echo(update, context):
     text = update.message.text
     #update.message.reply_text(update.message.text)
     #update.message.reply_photo(photo='https://telegram.org/img/t_logo.png') # replay to bot
-    update.message.reply_photo(open("downloand.png","rb"))
+    # update.message.reply_photo(open("downloand.png","rb"))
 
     
 def error(update, context):
@@ -46,6 +59,7 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("info", info))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))

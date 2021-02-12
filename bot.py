@@ -35,6 +35,7 @@ def info(update,context):
     user = update.message.from_user
     update.message.reply_text('You are the user {} and your user ID: {} '.format(user['username'], user['id']))
 
+
 def reply(update, context):
     text = update.message.text
     #update.message.reply_text(update.message.text)
@@ -42,6 +43,7 @@ def reply(update, context):
     # update.message.reply_photo(open("downloand.png","rb"))
     user = update.message.from_user
     print(user)
+    update.message.reply_text("OK")
     
 def error(update, context):
     """Log Errors caused by Updates."""

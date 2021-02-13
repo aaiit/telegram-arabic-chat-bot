@@ -1,9 +1,19 @@
 
-# import okey
+from okey import predict
 
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
+
+os.system("""
+mkdir Bot;
+
+curl -o Bot/checkpoint  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fcheckpoint?alt=media&token=ok  ;
+
+curl -o Bot/saved_model.data-00000-of-00001  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.data-00000-of-00001?alt=media&token=ok ;
+
+curl -o Bot/saved_model.index  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.index?alt=media&token=ok  ;
+""")
 PORT = int(os.environ.get('PORT', 5000))
 
 # Enable logging
@@ -34,9 +44,9 @@ def reply(update, context):
     #update.message.reply_text(update.message.text)
     #update.message.reply_photo(photo='https://telegram.org/img/t_logo.png') # replay to bot
     # update.message.reply_photo(open("downloand.png","rb"))
-    user = update.message.from_user
-    print(user)
-    update.message.reply_text("OK")
+    # user = update.message.from_user
+    # print(user)
+    update.message.reply_text(predict(text))
     
 def error(update, context):
     """Log Errors caused by Updates."""

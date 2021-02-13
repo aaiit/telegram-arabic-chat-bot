@@ -1,5 +1,5 @@
-# pip install  tensorflow==2
-# pip install  tensorflow-datasets==1.2.0
+# pip install tensorflow==2
+# pip install tensorflow-datasets==1.2.0
 
 import tensorflow as tf
 import pandas as pd
@@ -53,7 +53,6 @@ MAX_LENGTH = 40
 # Tokenize, filter and pad sentences
 def tokenize_and_filter(inputs, outputs):
   tokenized_inputs, tokenized_outputs = [], []
-  
   for (sentence1, sentence2) in zip(inputs, outputs):
     # tokenize sentence
     sentence1 = START_TOKEN + tokenizer.encode(sentence1) + END_TOKEN
@@ -62,13 +61,11 @@ def tokenize_and_filter(inputs, outputs):
     if len(sentence1) <= MAX_LENGTH and len(sentence2) <= MAX_LENGTH:
       tokenized_inputs.append(sentence1)
       tokenized_outputs.append(sentence2)
-  
   # pad tokenized sentences
   tokenized_inputs = tf.keras.preprocessing.sequence.pad_sequences(
       tokenized_inputs, maxlen=MAX_LENGTH, padding='post')
   tokenized_outputs = tf.keras.preprocessing.sequence.pad_sequences(
       tokenized_outputs, maxlen=MAX_LENGTH, padding='post')
-  
   return tokenized_inputs, tokenized_outputs
 
 
@@ -112,41 +109,31 @@ dataset = dataset.prefetch(tf.data.experimental.AUTOTUNE)
 def scaled_dot_product_attention(query, key, value, mask):
   """Calculate the attention weights. """
   matmul_qk = tf.matmul(query, key, transpose_b=True)
-
   # scale matmul_qk
   depth = tf.cast(tf.shape(key)[-1], tf.float32)
   logits = matmul_qk / tf.math.sqrt(depth)
-
   # add the mask to zero out padding tokens
   if mask is not None:
     logits += (mask * -1e9)
-
   # softmax is normalized on the last axis (seq_len_k)
   attention_weights = tf.nn.softmax(logits, axis=-1)
-
   output = tf.matmul(attention_weights, value)
-
   return output
 
 
 
 
 
-  class MultiHeadAttention(tf.keras.layers.Layer):
-
+class MultiHeadAttention(tf.keras.layers.Layer):
   def __init__(self, d_model, num_heads, name="multi_head_attention"):
     super(MultiHeadAttention, self).__init__(name=name)
     self.num_heads = num_heads
     self.d_model = d_model
-
     assert d_model % self.num_heads == 0
-
     self.depth = d_model // self.num_heads
-
     self.query_dense = tf.keras.layers.Dense(units=d_model)
     self.key_dense = tf.keras.layers.Dense(units=d_model)
     self.value_dense = tf.keras.layers.Dense(units=d_model)
-
     self.dense = tf.keras.layers.Dense(units=d_model)
 
   def split_heads(self, inputs, batch_size):
@@ -171,9 +158,7 @@ def scaled_dot_product_attention(query, key, value, mask):
 
     # scaled dot-product attention
     scaled_attention = scaled_dot_product_attention(query, key, value, mask)
-
     scaled_attention = tf.transpose(scaled_attention, perm=[0, 2, 1, 3])
-
     # concatenation of heads
     concat_attention = tf.reshape(scaled_attention,
                                   (batch_size, -1, self.d_model))

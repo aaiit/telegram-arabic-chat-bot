@@ -14,6 +14,7 @@ curl -o Bot/saved_model.data-00000-of-00001  https://firebasestorage.googleapis.
 
 curl -o Bot/saved_model.index  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.index?alt=media&token=ok  ;
 """)
+
 PORT = int(os.environ.get('PORT', 5000))
 
 # Enable logging

@@ -56,3 +56,30 @@ I’ve noticed the bot stops responding after about 24 hours of inactivity (beca
 > git push heroku master
 
 You should see again see the messages about a Python app being detected and once it finishes executing, your bot should revive now!
+
+
+
+pip install google-api-python-client -t app/lib
+
+
+from lib.apiclient import discovery
+
+
+file_id = '1-AosBKix6Sr4UQFCZIf3bhYhAwHm5ccA'
+request = drive_service.files().get_media(fileId=file_id)
+fh = io.BytesIO()
+downloader = MediaIoBaseDownload(fh, request)
+done = False
+while done is False:
+    status, done = downloader.next_chunk()
+    print ("Download %d%%." % int(status.progress() * 100))
+
+
+
+mkdir Bot;
+
+curl -o Bot/checkpoint  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fcheckpoint?alt=media&token=ok  ;
+
+curl -o Bot/saved_model.data-00000-of-00001  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.data-00000-of-00001?alt=media&token=ok ;
+
+curl -o Bot/saved_model.index  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.index?alt=media&token=ok  ;

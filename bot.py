@@ -1,8 +1,3 @@
-
-from okey import predict
-
-import logging
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import os
 
 os.system("""
@@ -13,7 +8,15 @@ curl -o Bot/checkpoint  https://firebasestorage.googleapis.com/v0/b/scrapping-9c
 curl -o Bot/saved_model.data-00000-of-00001  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.data-00000-of-00001?alt=media&token=ok ;
 
 curl -o Bot/saved_model.index  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.index?alt=media&token=ok  ;
+
+curl -o Bot/tokenizer https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Ftokenizer.pkl?alt=media&token=ok
+
 """)
+from okey import predict
+
+import logging
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
 
 PORT = int(os.environ.get('PORT', 5000))
 

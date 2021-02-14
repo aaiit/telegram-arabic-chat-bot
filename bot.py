@@ -1,17 +1,9 @@
 import os
 
-os.system("""
-mkdir Bot;
+# heroku config:set URL_MODEL=***********
 
-curl -o Bot/checkpoint  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fcheckpoint?alt=media&token=ok  ;
-
-curl -o Bot/saved_model.data-00000-of-00001  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.data-00000-of-00001?alt=media&token=ok ;
-
-curl -o Bot/saved_model.index  https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Fsaved_model.index?alt=media&token=ok  ;
-
-curl -o Bot/tokenizer.pkl https://firebasestorage.googleapis.com/v0/b/scrapping-9c4c2.appspot.com/o/Bot%2Ftokenizer.pkl?alt=media&token=ok
-
-""")
+url_model = os.environ.get('URL_MODEL', None)
+os.system("curl -o Bot_Model.zip  " + url_model)
 
 from model import predict
 
@@ -26,7 +18,10 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-TOKEN = '1679902226:AAG1jLPLeCa9Pfb_5-9VvYt0lBrJUh0moQQ'
+
+#  heroku config:set TELEGRAM_TOKEN=**************
+TOKEN =  os.environ.get('TELEGRAM_TOKEN', None)
+
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.

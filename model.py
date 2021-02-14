@@ -40,7 +40,7 @@ def preprocess_sentence(sentence):
 
 ###################
 
-with gzip.open('Bot/tokenizer.pkl', 'rb') as handle:
+with gzip.open('Bot_Model/tokenizer.pkl', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 # tfds.features.text.SubwordTextEncoder.build_from_corpus(
@@ -520,7 +520,7 @@ def predict(sentence):
 
 
 
-model.load_weights("Bot/saved_model")
+model.load_weights("Bot_Model/saved_model")
 output = predict('مشاء الله')
 
 

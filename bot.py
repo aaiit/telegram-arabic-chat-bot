@@ -3,7 +3,7 @@ import os
 # heroku config:set URL_MODEL=***********
 
 url_model = os.environ.get('URL_MODEL', None)
-os.system("curl -o Bot_Model.zip  " + url_model)
+os.system("curl -o Bot_Model.zip  " + url_model + ";unzip Bot_Model.zip")
 
 from model import predict
 

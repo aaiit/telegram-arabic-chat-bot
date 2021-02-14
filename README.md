@@ -27,7 +27,7 @@ to create your new webapp. Heroku will assign your webapp a name as well as the 
 
 > heroku config:set URL_MODEL="https://raw.githubusercontent.com/aaiit/aaiit.github.io/master/files/Bot_Model.zip"
 
-> heroku config:set WEB_URL="ttps://yourherokuappname.herokuapp.com/"
+> heroku config:set WEB_URL="https://yourherokuappname.herokuapp.com/"
 
 8. Next, in your command line, type the following commands in the following order:
 

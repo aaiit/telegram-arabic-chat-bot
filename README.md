@@ -2,6 +2,8 @@
 
 # Telegram Arabic Chat-Bot
 
+![@aaiit_bot](aaiit_bot.png)
+
 ![@aaiit_bot](alexa.png)
 
 

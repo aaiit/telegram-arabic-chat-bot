@@ -521,6 +521,5 @@ def predict(sentence):
 
 
 model.load_weights("Bot_Model/saved_model")
-output = predict('مشاء الله')
 
 

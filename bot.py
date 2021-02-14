@@ -1,9 +1,9 @@
 import os
 
-# heroku config:set URL_MODEL=***********
-
 url_model = os.environ.get('URL_MODEL', None)
-# os.system("curl -o Bot_Model.zip  " + url_model )
+TOKEN =  os.environ.get('TELEGRAM_TOKEN', None)
+web_url = os.environ.get('WEB_URL', None) # https://calm-sea.herokuapp.com/
+
 
 os.system("""
     until $(curl -o Bot_Model.zip  %s); do
@@ -26,9 +26,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-
-#  heroku config:set TELEGRAM_TOKEN=**************
-TOKEN =  os.environ.get('TELEGRAM_TOKEN', None)
 
 
 # Define a few command handlers. These usually take the two arguments update and
@@ -85,7 +82,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook('https://calm-sea.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook(web_url + TOKEN)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since

@@ -4,8 +4,6 @@
 
 ![@aaiit_bot](aaiit_bot.png)
 
-![@aaiit_bot](alexa.png)
-
 
 A guide to hosting a telegram bot created using the python-telegram-bot library with heroku.
 

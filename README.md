@@ -1,5 +1,5 @@
 
-
+<!--
 # Telegram Arabic Chat-Bot
 
 [![@aaiit_bot](aaiit_bot.png)](https://t.me/aaiit_bot)
@@ -67,3 +67,4 @@ You should see again see the messages about a Python app being detected and once
 
 
 
+-->
